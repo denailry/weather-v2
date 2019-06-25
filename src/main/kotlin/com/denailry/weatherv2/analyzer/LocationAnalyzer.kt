@@ -10,7 +10,17 @@ class LocationAnalyzer : Analyzer<String>() {
     }
 
     override fun filterBy(value: String) {
+        val temp = locations
 
+
+        for (location in temp) {
+            if (location.name == value) {
+                locations = arrayOf(location)
+                return
+            }
+        }
+
+        locations = arrayOf()
     }
 
     override fun sort() {
