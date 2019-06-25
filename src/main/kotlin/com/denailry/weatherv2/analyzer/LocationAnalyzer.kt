@@ -31,7 +31,7 @@ class LocationAnalyzer : Analyzer<String>() {
         }
     }
 
-    override fun result(): Array<LocationBuilder.Location> {
-        return locations
+    override fun result(): ArrayList<LocationBuilder.Location> {
+        return locations.toCollection(ArrayList())
     }
 }

@@ -11,5 +11,5 @@ abstract class Analyzer<T> {
     abstract fun init(locations: Array<LocationBuilder.Location>)
     abstract fun filterBy(value: T)
     abstract fun sort(type: SortType)
-    abstract fun result() : Array<LocationBuilder.Location>
+    abstract fun result() : ArrayList<LocationBuilder.Location>
 }
