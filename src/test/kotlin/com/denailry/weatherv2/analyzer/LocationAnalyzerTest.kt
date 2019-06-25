@@ -32,4 +32,36 @@ class LocationAnalyzerTest {
 
         assertEquals(bangalore, results[0])
     }
+
+    @Test
+    fun testAnalyzerSortAscending() {
+        val analyzer = LocationAnalyzer()
+        val jakarta = LocationBuilder("jakarta").build()
+        val bangalore = LocationBuilder("bangalore").build()
+
+        analyzer.init(arrayOf(jakarta, bangalore))
+        analyzer.sort(Analyzer.SortType.ASCENDING)
+
+        val results = analyzer.result()
+
+        println(results[0].name)
+
+        assertEquals(bangalore, results[0])
+    }
+
+    @Test
+    fun testAnalyzerSortDescending() {
+        val analyzer = LocationAnalyzer()
+        val jakarta = LocationBuilder("jakarta").build()
+        val bangalore = LocationBuilder("bangalore").build()
+
+        analyzer.init(arrayOf(jakarta, bangalore))
+        analyzer.sort(Analyzer.SortType.DESCENDING)
+
+        val results = analyzer.result()
+
+        println(results[0].name)
+
+        assertEquals(jakarta, results[0])
+    }
 }

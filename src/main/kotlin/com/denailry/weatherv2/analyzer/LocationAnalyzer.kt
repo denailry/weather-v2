@@ -23,8 +23,12 @@ class LocationAnalyzer : Analyzer<String>() {
         locations = arrayOf()
     }
 
-    override fun sort() {
-
+    override fun sort(type: SortType) {
+        if (type == SortType.ASCENDING) {
+            locations.sortWith(compareBy({it.name}))
+        } else {
+            locations.sortWith(compareByDescending({it.name}))
+        }
     }
 
     override fun result(): Array<LocationBuilder.Location> {
