@@ -3,24 +3,23 @@ package com.denailry.weatherv2.analyzer
 import com.denailry.weatherv2.weather.LocationBuilder
 
 class LocationAnalyzer : Analyzer<String>() {
-    private var locations: Array<LocationBuilder.Location> = arrayOf()
+    private var locations: ArrayList<LocationBuilder.Location> = ArrayList()
 
-    override fun init(locations: Array<LocationBuilder.Location>) {
+    override fun init(locations: ArrayList<LocationBuilder.Location>) {
         this.locations = locations
     }
 
     override fun filterBy(value: String) {
         val temp = locations
 
-
         for (location in temp) {
             if (location.name == value) {
-                locations = arrayOf(location)
+                locations = arrayOf(location).toCollection(ArrayList())
                 return
             }
         }
 
-        locations = arrayOf()
+        locations = ArrayList()
     }
 
     override fun sort(type: SortType) {

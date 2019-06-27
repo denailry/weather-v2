@@ -6,11 +6,11 @@ import org.junit.Test
 
 class LocationAnalyzerTest {
     @Test
-    fun testInitializedAnalyzer() {
+    fun `given location when filtered by cityname should return foo`() {
         val analyzer = LocationAnalyzer()
         val location = LocationBuilder("jakarta").build()
 
-        analyzer.init(arrayOf(location))
+        analyzer.init(arrayOf(location).toCollection(ArrayList()))
 
         val results = analyzer.result()
 
@@ -23,7 +23,7 @@ class LocationAnalyzerTest {
         val jakarta = LocationBuilder("jakarta").build()
         val bangalore = LocationBuilder("bangalore").build()
 
-        analyzer.init(arrayOf(jakarta, bangalore))
+        analyzer.init(arrayOf(jakarta, bangalore).toCollection(ArrayList()))
         analyzer.filterBy("bangalore")
 
         val results = analyzer.result()
@@ -39,7 +39,7 @@ class LocationAnalyzerTest {
         val jakarta = LocationBuilder("jakarta").build()
         val bangalore = LocationBuilder("bangalore").build()
 
-        analyzer.init(arrayOf(jakarta, bangalore))
+        analyzer.init(arrayOf(jakarta, bangalore).toCollection(ArrayList()))
         analyzer.sort(Analyzer.SortType.ASCENDING)
 
         val results = analyzer.result()
@@ -55,7 +55,7 @@ class LocationAnalyzerTest {
         val jakarta = LocationBuilder("jakarta").build()
         val bangalore = LocationBuilder("bangalore").build()
 
-        analyzer.init(arrayOf(jakarta, bangalore))
+        analyzer.init(arrayListOf(jakarta, bangalore))
         analyzer.sort(Analyzer.SortType.DESCENDING)
 
         val results = analyzer.result()

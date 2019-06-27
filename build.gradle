@@ -1,5 +1,5 @@
 plugins {
-    id 'java'
+    id 'application'
     id 'org.jetbrains.kotlin.jvm' version '1.3.21'
 }
 
@@ -23,3 +23,9 @@ compileKotlin {
 compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
+
+run {
+    standardInput = System.in
+}
+
+mainClassName = "com.denailry.weatherv2.Application"

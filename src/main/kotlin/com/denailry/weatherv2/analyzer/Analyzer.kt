@@ -8,7 +8,7 @@ abstract class Analyzer<T> {
         DESCENDING
     }
 
-    abstract fun init(locations: Array<LocationBuilder.Location>)
+    abstract fun init(locations: ArrayList<LocationBuilder.Location>)
     abstract fun filterBy(value: T)
     abstract fun sort(type: SortType)
     abstract fun result() : ArrayList<LocationBuilder.Location>

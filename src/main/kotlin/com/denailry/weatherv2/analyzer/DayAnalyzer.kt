@@ -8,7 +8,7 @@ import kotlin.math.min
 class DayAnalyzer : Analyzer<WeatherDay>() {
     private var dumps: ArrayList<Dump> = ArrayList()
 
-    override fun init(locations: Array<LocationBuilder.Location>) {
+    override fun init(locations: ArrayList<LocationBuilder.Location>) {
         dumps = ArrayList()
 
         for (location in locations) {
@@ -25,8 +25,8 @@ class DayAnalyzer : Analyzer<WeatherDay>() {
         this.sort(SortType.ASCENDING)
 
         var startPos = 0
-        for (i in 0..dumps.size-1) {
-            val dump = dumps.get(i)
+        for (i in 0 until dumps.size) {
+            val dump = dumps[i]
             if (dump.weather.day >= value) {
                 startPos = i
                 break
@@ -47,9 +47,11 @@ class DayAnalyzer : Analyzer<WeatherDay>() {
 
     override fun sort(type: SortType) {
         if (type == SortType.ASCENDING) {
-            dumps.sortWith(compareBy({it.weather.day.value}))
+            dumps.sortWith(compareBy { dumpObject ->
+                dumpObject.weather.day.value
+            })
         } else {
-            dumps.sortWith(compareByDescending({it.weather.day.value}))
+            dumps.sortWith(compareByDescending {it.weather.day.value})
         }
     }
 
@@ -57,11 +59,11 @@ class DayAnalyzer : Analyzer<WeatherDay>() {
         val locationByName = HashMap<String, LocationBuilder>()
 
         for (dump in dumps) {
-            var builder = locationByName.get(dump.location)
+            var builder = locationByName[dump.location]
 
             if (builder == null) {
                 builder = LocationBuilder(dump.location)
-                locationByName.put(dump.location, builder)
+                locationByName[dump.location] = builder
             }
 
             builder.addWeather(dump.weather)
